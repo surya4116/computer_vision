@@ -1,0 +1,16 @@
+import cv2
+import numpy as np
+image = cv2.imread("C:\\Users\\lenovo\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-11 142415.png")   
+if image is None:
+    print("Error: Unable to load image.")
+    exit()
+tx = 100  
+ty = 50    
+M = np.float32([[1, 0, tx],
+                [0, 1, ty]])
+(h, w) = image.shape[:2]
+shifted = cv2.warpAffine(image, M, (w, h))
+cv2.imshow("Original Image", image)
+cv2.imshow("Shifted Image", shifted)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
