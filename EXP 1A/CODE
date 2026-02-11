@@ -1,0 +1,9 @@
+#1A.read an image in python and conver the given image into grayscale
+
+
+import cv2
+from google.colab.patches import cv2_imshow
+image = cv2.imread("/content/tree.png")
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+cv2_imshow(image)
+cv2_imshow(gray_image)
