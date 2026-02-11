@@ -1,0 +1,24 @@
+import cv2
+import numpy as np
+image = cv2.imread("C:\\Users\\lenovo\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-02-11 141531.png")   
+if image is None:
+    print("Error: Unable to load image.")
+    exit()
+h, w = image.shape[:2]
+src_pts = np.float32([[100, 100],
+                      [400, 120],
+                      [120, 400],
+                      [420, 420]])
+dst_pts = np.float32([[0, 0],
+                      [w, 0],
+                      [0, h],
+                      [w, h]])
+H, status = cv2.findHomography(src_pts, dst_pts, method=0) 
+
+warped = cv2.warpPerspective(image, H, (w, h))
+
+cv2.imshow("Original", image)
+cv2.imshow("DLT Warped", warped)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
