@@ -1,0 +1,24 @@
+import cv2
+cap = cv2.VideoCapture(0)
+if not cap.isOpened():
+    print("Error: Cannot access webcam")
+    exit()
+print("Press 'n' = normal, 's' = slow, 'f' = fast, 'q' = quit")
+delay = 30   
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        print("Failed to grab frame")
+        break
+    cv2.imshow("Webcam Video", frame)
+    key = cv2.waitKey(delay) & 0xFF
+    if key == ord('s'):      
+        delay = 120
+    elif key == ord('f'):  
+        delay = 5
+    elif key == ord('n'):   
+        delay = 30
+    elif key == ord('q'):   
+        break
+cap.release()
+cv2.destroyAllWindows()
